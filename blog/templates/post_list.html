@@ -1,0 +1,58 @@
+<!-- filepath: /c:/Users/informaticos/Desktop/mi_proyecto2/mi_proyecto/blog/templates/post_list.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Publicaciones</title>
+    <style>
+        table {
+            width: 70%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+
+
+{% block title %}Lista de Publicaciones{% endblock %}
+
+{% block content %}
+    <h1>Lista de Publicaciones</h1>
+    
+    <a href="{% url 'post_create' %}">Crear nueva publicación</a>
+
+    <h2>Lista de Posts</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Título</th>
+                <th>Contenido</th>
+                <th>Fecha de Creación</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for post in object_list %}
+            <tr>
+                <td><a href="{% url 'post_detail' post.pk %}">{{ post.titulo }}</a></td><!-- Muestra el título del objeto -->
+                <td><a href="{% url 'post_detail' post.pk %}">{{ post.contenido }}</td> <!-- Muestra el contenido del objeto -->
+                <td>{{ post.fecha_creacion }}</td> <!-- Muestra la fecha de creación -->
+                <td>
+                    <a href="{% url 'post_edit' post.pk %}">Editar</a>
+                    <a href="{% url 'post_delete' post.pk %}">Eliminar</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Mi Proyecto Django{% endblock %}</title>
+</head>
+<body>
+    <header>
+        <h1>Mi Proyecto Django</h1>
+    </header>
+
+    <div id="content">
+        
+        {% block content %}
+        <!-- El contenido dinámico de cada página se inserta aquí -->
+        
+
+               
+        
+            <h2>{{ post.titulo }}</h2>
+            <p>{{ post.contenido }}</p>
+            <p><strong>Fecha de creación:</strong> {{ post.fecha_creacion }}</p>
+        
+            <a href="{% url 'post_edit' post.pk %}">Editar</a>
+            <a href="{% url 'post_delete' post.pk %}">Eliminar</a>
+        
+        {% endblock %}
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Mi Proyecto Django</p>
+    </footer>
+</body>
+</html>
